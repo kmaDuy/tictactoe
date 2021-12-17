@@ -9,11 +9,11 @@ import java.util.Random;
 public class TicTacToe implements ActionListener {
     Random random = new Random();
     JFrame frame = new JFrame();
-    JPanel title_panel=new JPanel();
-    JPanel button_panel = new JPanel();
-    JLabel textfield = new JLabel();
+    JPanel titlePanel=new JPanel();
+    JPanel buttonPanel = new JPanel();
+    JLabel textField = new JLabel();
     JButton[] buttons = new JButton[9];
-    boolean player1_turn;
+    boolean playerTurn_1;
     // Setup giao diện
     public TicTacToe() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,27 +26,27 @@ public class TicTacToe implements ActionListener {
 
         frame.setVisible(true);
 
-        textfield.setBackground(new Color(25,25,25));
+        textField.setBackground(new Color(25,25,25));
 
-        textfield.setForeground(new Color(25,255,0));
+        textField.setForeground(new Color(25,255,0));
 
-        textfield.setFont(new Font("Ink Free",Font.BOLD,75));
+        textField.setFont(new Font("Ink Free",Font.BOLD,75));
 
-        textfield.setHorizontalAlignment(JLabel.CENTER);
+        textField.setHorizontalAlignment(JLabel.CENTER);
 
-        textfield.setText("Tic-Tac-Toe");
+        textField.setText("Tic-Tac-Toe");
 
-        textfield.setOpaque(true);
+        textField.setOpaque(true);
 
-        title_panel.setLayout(new BorderLayout());
+        titlePanel.setLayout(new BorderLayout());
 
-        title_panel.setBounds(0,0,800,100);
+        titlePanel.setBounds(0,0,800,100);
 
 
 
-        button_panel.setLayout(new GridLayout(3,3));
+        buttonPanel.setLayout(new GridLayout(3,3));
 
-        button_panel.setBackground(new Color(150,150,150));
+        buttonPanel.setBackground(new Color(150,150,150));
 
 
 //    tạo mới 9 button
@@ -55,7 +55,7 @@ public class TicTacToe implements ActionListener {
 
             buttons[i] = new JButton();
 
-            button_panel.add(buttons[i]);
+            buttonPanel.add(buttons[i]);
 
             buttons[i].setFont(new Font("MV Boli",Font.BOLD,120));
 
@@ -67,11 +67,11 @@ public class TicTacToe implements ActionListener {
 
 
 
-        title_panel.add(textfield);
+        titlePanel.add(textField);
 
-        frame.add(title_panel,BorderLayout.NORTH);
+        frame.add(titlePanel,BorderLayout.NORTH);
 
-        frame.add(button_panel);
+        frame.add(buttonPanel);
 
 
 
@@ -84,21 +84,22 @@ public class TicTacToe implements ActionListener {
 
         if(random.nextInt(2)==0) {
 
-            player1_turn=true;
+            playerTurn_1=true;
 
-            textfield.setText("X turn");
+            textField.setText("X turn");
 
         }
 
         else {
 
-            player1_turn=false;
+            playerTurn_1=false;
 
-            textfield.setText("O turn");
+            textField.setText("O turn");
 
         }
 
     }
+
     public boolean check() {
 
         //Kiểm tra X thắng
@@ -396,7 +397,7 @@ public class TicTacToe implements ActionListener {
 
         }
 
-        textfield.setText("X wins");
+        textField.setText("X wins");
 
     }
     public void oWins(int a, int b, int c) {
@@ -415,7 +416,7 @@ public class TicTacToe implements ActionListener {
 
         }
 
-        textfield.setText("O wins");
+        textField.setText("O wins");
 
     }
     //kiểm tra xem có hoà không
@@ -441,7 +442,7 @@ public class TicTacToe implements ActionListener {
 
             if(e.getSource()==buttons[i]) {
 
-                if(player1_turn) {
+                if(playerTurn_1) {
 
                     if(buttons[i].getText()=="") {
 
@@ -449,9 +450,9 @@ public class TicTacToe implements ActionListener {
 
                         buttons[i].setText("X");
 
-                        player1_turn=false;
+                        playerTurn_1=false;
 
-                        textfield.setText("O turn");
+                        textField.setText("O turn");
 
                         check();
 
@@ -467,9 +468,9 @@ public class TicTacToe implements ActionListener {
 
                         buttons[i].setText("O");
 
-                        player1_turn=true;
+                        playerTurn_1=true;
 
-                        textfield.setText("X turn");
+                        textField.setText("X turn");
 
                         check();
 
@@ -479,8 +480,9 @@ public class TicTacToe implements ActionListener {
 
             }
         }
+
         if(isTied()){
-            textfield.setText("TIED");
+            textField.setText("TIED");
         }
 
     }
