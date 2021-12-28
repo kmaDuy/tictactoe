@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.border.EmptyBorder;
 
 public class TicTacToe implements ActionListener {
     Random random = new Random();
@@ -13,6 +14,9 @@ public class TicTacToe implements ActionListener {
     JPanel buttonPanel = new JPanel();
     JLabel textField = new JLabel();
     JButton[] buttons = new JButton[9];
+    JButton btn = new JButton();
+
+
     boolean playerTurn_1;
     // Setup giao diện
     public TicTacToe() {
@@ -47,6 +51,7 @@ public class TicTacToe implements ActionListener {
         buttonPanel.setLayout(new GridLayout(3,3));
 
         buttonPanel.setBackground(new Color(150,150,150));
+
 
 
 //    tạo mới 9 button
@@ -398,6 +403,7 @@ public class TicTacToe implements ActionListener {
         }
 
         textField.setText("X wins");
+        crtpl();
 
     }
     public void oWins(int a, int b, int c) {
@@ -417,6 +423,7 @@ public class TicTacToe implements ActionListener {
         }
 
         textField.setText("O wins");
+        crtpl();
 
     }
     //kiểm tra xem có hoà không
@@ -483,7 +490,24 @@ public class TicTacToe implements ActionListener {
 
         if(isTied()){
             textField.setText("TIED");
+            crtpl();
+        }
+        if (e.getSource() ==      btn) {
+            newGame();
         }
 
+    }
+    public void  crtpl() {
+        JPanel nPanel =new JPanel(new BorderLayout(100, 100));
+        btn.setText("NEW GAME");
+        btn.addActionListener(this);
+        nPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        nPanel.add(btn,BorderLayout.CENTER);
+        frame.add(nPanel,BorderLayout.PAGE_END);
+
+    }
+
+    public void newGame() {
+        new TicTacToe();
     }
 }
